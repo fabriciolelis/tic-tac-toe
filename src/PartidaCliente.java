@@ -7,9 +7,8 @@ import java.util.Scanner;
 public class PartidaCliente extends Partida {
 
     private Scanner entrada = new Scanner(System.in);
-    private int vez = 1;
+    private int vez = 0;
     private Jogador jogador;
-
 
 
     @Override
@@ -43,29 +42,44 @@ public class PartidaCliente extends Partida {
         Tabuleiro tabuleiro = new Tabuleiro();
 
         while (true) {
-
             tabuleiroAtual = entradaServidor.readLine();
             tabuleiro.atualizarTabuleiro(tabuleiroAtual);
             tabuleiro.imprimeTabuleiro();
+            vez++;
+
+            if (terminou(tabuleiro) || vez > 4) {
+                break;
+            }
 
             System.out.println("escolha uma posição no tabuleiro");
             int posicao = entrada.nextInt();
 
-            while(!possoJogar(tabuleiro, posicao)){
+            while (!possoJogar(tabuleiro, posicao)) {
                 tabuleiro.imprimeTabuleiro();
                 System.out.println("escolha outra posição no tabuleiro");
                 posicao = entrada.nextInt();
             }
             jogador.jogar(tabuleiro, -1, posicao);
 
+            tabuleiro.imprimeTabuleiro();
+
             tabuleiroAtual = tabuleiro.mostraTabuleiro();
 
-            saidaServidor.writeBytes(tabuleiroAtual+ "\n");
+            saidaServidor.writeBytes(tabuleiroAtual + "\n");
 
-
-            vez++;
+            if (terminou(tabuleiro)) {
+                break;
+            }
+            System.out.println("Esperando jogada do servidor");
         }
 
+        if (ganhou(tabuleiro) == -1) {
+            System.out.println("Cliente ganhou!!!");
+        } else if (ganhou(tabuleiro) == 0) {
+            System.out.println("Servidor ganhou!!!");
+        } else {
+            System.out.println("Deu velha!!!");
         }
     }
+}
 

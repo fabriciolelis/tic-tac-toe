@@ -45,52 +45,47 @@ public class PartidaServidor extends Partida {
 
         DataOutputStream saidaCliente = new DataOutputStream(conexao.getOutputStream());
 
-        //while (true) {
+        Tabuleiro tabuleiro = new Tabuleiro();
 
-            Tabuleiro tabuleiro = new Tabuleiro();
+        while (true) {
 
-            while (true) {
+            tabuleiro.imprimeTabuleiro();
 
+            System.out.println("escolha uma posição no tabuleiro");
+            int posicao = entrada.nextInt();
+
+            while (!possoJogar(tabuleiro, posicao)) {
                 tabuleiro.imprimeTabuleiro();
-
-                System.out.println("escolha uma posição no tabuleiro");
-                int posicao = entrada.nextInt();
-
-                while(!possoJogar(tabuleiro, posicao)){
-                    tabuleiro.imprimeTabuleiro();
-                    System.out.println("escolha outra posição no tabuleiro");
-                    posicao = entrada.nextInt();
-                }
-                jogador.jogar(tabuleiro, 0, posicao);
-
-                tabuleiro.imprimeTabuleiro();
-
-                tabuleiroAtual = tabuleiro.mostraTabuleiro();
-                saidaCliente.writeBytes(tabuleiroAtual + "\n");
-                vez ++;
-
-                if(terminou(tabuleiro) || vez == 5) {
-                    break;
-                }
-
-                System.out.println("Esperando jogada do cliente\n");
-
-                tabuleiroAtual = entradaCliente.readLine();
-                tabuleiro.atualizarTabuleiro(tabuleiroAtual);
-
-                if(terminou(tabuleiro)) {
-                    break;
-                }
+                System.out.println("escolha outra posição no tabuleiro");
+                posicao = entrada.nextInt();
             }
-            if(ganhou(tabuleiro) == -1) {
-                System.out.println("Cliente ganhou!!!");
+            jogador.jogar(tabuleiro, 0, posicao);
+
+            tabuleiro.imprimeTabuleiro();
+
+            tabuleiroAtual = tabuleiro.mostraTabuleiro();
+            saidaCliente.writeBytes(tabuleiroAtual + "\n");
+            vez++;
+
+            if (terminou(tabuleiro) || vez == 5) {
+                break;
             }
-            else if(ganhou(tabuleiro) == 0) {
-                System.out.println("Servidor ganhou!!!");
+
+            System.out.println("Esperando jogada do cliente\n");
+
+            tabuleiroAtual = entradaCliente.readLine();
+            tabuleiro.atualizarTabuleiro(tabuleiroAtual);
+
+            if (terminou(tabuleiro)) {
+                break;
             }
-            else {
-                System.out.println("Deu velha!!!");
-            }
-        //}
+        }
+        if (ganhou(tabuleiro) == -1) {
+            System.out.println("Cliente ganhou!!!");
+        } else if (ganhou(tabuleiro) == 0) {
+            System.out.println("Servidor ganhou!!!");
+        } else {
+            System.out.println("Deu velha!!!");
+        }
     }
 }
