@@ -1,11 +1,6 @@
 public abstract class  Partida {
 
-    protected abstract  void imprimePlacar();
-
-    public abstract void iniciar() throws Exception;
-
-
-    protected  boolean verificaPosicaoValida(int valor) {
+    private boolean verificaPosicaoValida(int valor) {
         if (!(valor == -1) && !(valor == 0)) {
             return true;
         } else {
@@ -14,7 +9,7 @@ public abstract class  Partida {
         }
     }
 
-    protected boolean possoJogar(Tabuleiro tabuleiro, int posicao) {
+    boolean possoJogar(Tabuleiro tabuleiro, int posicao) {
         if (posicao == 1) {
             return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[0][0]));
         } else if (posicao == 2) {
@@ -37,7 +32,7 @@ public abstract class  Partida {
         return false;
     }
 
-    protected int ganhou(Tabuleiro tabuleiro){
+    int ganhou(Tabuleiro tabuleiro){
         if (tabuleiro.verificaLinhas() == -1 || tabuleiro.verificaColuna() == -1 || tabuleiro.verificaDiagonal() == -1  ){
             return -1;
         }
@@ -48,7 +43,22 @@ public abstract class  Partida {
         return 10;
     }
 
-    protected boolean terminou(Tabuleiro tabuleiro){
+    void verificaVencedor(Tabuleiro tabuleiro) {
+        if (ganhou(tabuleiro) == -1) {
+            System.out.println("Cliente ganhou!!!");
+        } else if (ganhou(tabuleiro) == 0) {
+            System.out.println("Servidor ganhou!!!");
+        } else {
+            System.out.println("Deu velha!!!");
+        }
+    }
+
+    boolean terminou(Tabuleiro tabuleiro){
         return ganhou(tabuleiro) != 10;
     }
+
+    protected abstract  void imprimePlacar();
+
+    public abstract void iniciar() throws Exception;
+
 }

@@ -78,5 +78,4 @@ public class PartidaLocal extends Partida{
             vez = 1;
         }
     }
-
 }

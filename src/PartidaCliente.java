@@ -72,14 +72,7 @@ public class PartidaCliente extends Partida {
             }
             System.out.println("Esperando jogada do servidor");
         }
-
-        if (ganhou(tabuleiro) == -1) {
-            System.out.println("Cliente ganhou!!!");
-        } else if (ganhou(tabuleiro) == 0) {
-            System.out.println("Servidor ganhou!!!");
-        } else {
-            System.out.println("Deu velha!!!");
-        }
+        verificaVencedor(tabuleiro);
     }
 }
 
