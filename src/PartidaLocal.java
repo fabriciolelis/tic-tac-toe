@@ -26,12 +26,12 @@ public class PartidaLocal extends Partida{
     public void iniciar(){
 
         jogador1 = new JogadorHumano();
-        System.out.print("digite o nome do primeiro jogador: ");
+        System.out.print("Enter the name of the first player: ");
         String nomeJogador1 = entrada.next();
         jogador1.setNomeJogador(nomeJogador1);
 
         jogador2 = new JogadorHumano();
-        System.out.print("digite o nome do segundo jogador: ");
+        System.out.print("Enter the name of the second player: ");
         String nomeJogador2 = entrada.next();
         jogador2.setNomeJogador(nomeJogador2);
 
@@ -39,15 +39,15 @@ public class PartidaLocal extends Partida{
 
         while(jogarMais) {
             Tabuleiro tabuleiro = new Tabuleiro();
-            while(vez <10 && !terminou(tabuleiro)){
+            while(vez < 10 && !terminou(tabuleiro)){
                 tabuleiro.imprimeTabuleiro();
 
-                System.out.println("escolha uma posição no tabuleiro");
+                System.out.println("Choose a position on the board");
                 int posicao = entrada.nextInt();
 
                 while(!possoJogar(tabuleiro, posicao)){
                     tabuleiro.imprimeTabuleiro();
-                    System.out.println("escolha outra posição no tabuleiro");
+                    System.out.println("Choose a valid position on the board");
                     posicao = entrada.nextInt();
                 }
                 if (vez % 2 == 0){
@@ -60,21 +60,21 @@ public class PartidaLocal extends Partida{
             }
             tabuleiro.imprimeTabuleiro();
             if(ganhou(tabuleiro) == -1) {
-                System.out.println(jogador1.getNomeJogador()+" ganhou!!!");
+                System.out.println(jogador1.getNomeJogador()+" has won!!!");
                 jogador1.adicionaVitoria();
 
             }
             else if(ganhou(tabuleiro) == 0) {
-                System.out.println(jogador2.getNomeJogador()+" ganhou!!!");
+                System.out.println(jogador2.getNomeJogador()+" has won!!!");
                 jogador2.adicionaVitoria();
 
             }
             else {
-                System.out.println("Deu velha!!!");
+                System.out.println("TIED!!!");
             }
 
             imprimePlacar();
-            System.out.print("Deseja continuar? (S/N)");
+            System.out.print("Do you wish to continue? (Y/N)");
             String resposta = entrada.next();
             if(resposta.toUpperCase().equals("N")){
                 jogarMais = false;
