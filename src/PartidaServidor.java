@@ -1,3 +1,7 @@
+import board.Tabuleiro;
+import players.Jogador;
+import players.JogadorHumano;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -59,7 +63,7 @@ public class PartidaServidor extends Partida {
                 System.out.println("escolha outra posição no tabuleiro");
                 posicao = entrada.nextInt();
             }
-            jogador.jogar(tabuleiro, 0, posicao);
+            jogador.jogar(tabuleiro, "O", posicao);
 
             tabuleiro.imprimeTabuleiro();
 

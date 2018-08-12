@@ -1,7 +1,9 @@
+import board.Tabuleiro;
+
 public abstract class  Partida {
 
-    private boolean verificaPosicaoValida(int valor) {
-        if (!(valor == -1) && !(valor == 0)) {
+    private boolean verificaPosicaoValida(String valor) {
+        if (!(valor == "X") && !(valor == "O")) {
             return true;
         } else {
             System.out.println("posição invalida");
@@ -11,23 +13,23 @@ public abstract class  Partida {
 
     boolean possoJogar(Tabuleiro tabuleiro, int posicao) {
         if (posicao == 1) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[0][0]));
+            return verificaPosicaoValida(tabuleiro.matriz[0][0]);
         } else if (posicao == 2) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[0][1]));
+            return verificaPosicaoValida(tabuleiro.matriz[0][1]);
         } else if (posicao == 3) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[0][2]));
+            return verificaPosicaoValida(tabuleiro.matriz[0][2]);
         } else if (posicao == 4) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[1][0]));
+            return verificaPosicaoValida(tabuleiro.matriz[1][0]);
         } else if (posicao == 5) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[1][1]));
+            return verificaPosicaoValida(tabuleiro.matriz[1][1]);
         } else if (posicao == 6) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[1][2]));
+            return verificaPosicaoValida(tabuleiro.matriz[1][2]);
         } else if (posicao == 7) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[2][0]));
+            return verificaPosicaoValida(tabuleiro.matriz[2][0]);
         } else if (posicao == 8) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[2][1]));
+            return verificaPosicaoValida(tabuleiro.matriz[2][1]);
         } else if(posicao == 9) {
-            return verificaPosicaoValida(Integer.parseInt(tabuleiro.matriz[2][2]));
+            return verificaPosicaoValida(tabuleiro.matriz[2][2]);
         }
         return false;
     }

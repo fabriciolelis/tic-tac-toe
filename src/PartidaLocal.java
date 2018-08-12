@@ -1,3 +1,7 @@
+import board.Tabuleiro;
+import players.Jogador;
+import players.JogadorHumano;
+
 import java.util.Scanner;
 
 public class PartidaLocal extends Partida{
@@ -47,10 +51,10 @@ public class PartidaLocal extends Partida{
                     posicao = entrada.nextInt();
                 }
                 if (vez % 2 == 0){
-                    jogador2.jogar(tabuleiro, 0, posicao);
+                    jogador2.jogar(tabuleiro, "O", posicao);
                 }
                 else {
-                    jogador1.jogar(tabuleiro, -1, posicao);
+                    jogador1.jogar(tabuleiro, "X", posicao);
                 }
                 vez++;
             }

@@ -1,3 +1,7 @@
+package players;
+
+import board.Tabuleiro;
+
 public abstract class  Jogador {
 
     public abstract void setNomeJogador(String nomeJogador);
@@ -8,7 +12,7 @@ public abstract class  Jogador {
 
     public abstract int getVitorias();
 
-    public abstract void jogar(Tabuleiro tabuleiro, int sinal, int posicao);
+    public abstract void jogar(Tabuleiro tabuleiro, String sinal, int posicao);
 
 }
 
